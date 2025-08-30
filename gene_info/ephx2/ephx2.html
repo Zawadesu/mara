@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPHX2</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">EPHX2</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>EPHX2</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.rcsb.org/3d-view/8QVF" target="_blank" title="check protein details">
+                            <img src="../../images/ephx2.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Epoxide hydrolase 2</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>p21</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>27490781 - 27545564</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000120915">ENSG00000120915</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P34913/entry">P34913</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000120915-EPHX2/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>EPHX2</i> is a bifunctional enzyme whose C-terminal domain exhibits epoxide hydrolase activity. 
+                    It metabolizes both xenobiotic and physiological epoxides, degrading potentially toxic compounds while 
+                    regulating steady-state levels of endogenous signaling mediators. This dual role positions EPHX2 as a key 
+                    player in detoxification pathways and homeostasis of bioactive epoxide molecules.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [6.432976105,7.118951452,7.948373072,7.459439816,5.862972036,6.523577637,6.46108649,5.475765851,6.590976207,6.714259258,6.118961831,6.189844322,7.219178203,6.942526235,6.965795826,3.944952124,6.357569598,4.968136844,6.157872375,4.754940934,7.434636567,7.055293283,6.009011185,7.209463114,6.977291373,7.321937112,7.569863201,6.640982366,6.82019173,6.857993432,6.672439486,6.727934065,6.427958088,5.501470992,5.717018322,4.700495205,5.749561083],
+                                [7.266795909,6.70045359,6.321946128,5.669622095,6.272415173,5.013506925,6.741480469,5.129324236,6.522008655,5.228857162,6.482219064,7.312892029,7.066099957,6.312901102,6.246046988,7.108534911,7.118951452,5.501470992,7.700446654,7.087473449,5.392351772,6.022390008,6.427958088,7.467613701,5.307464956,6.323748349,6.642427214,7.000011271,2.840161067,7.491861111,6.857993432,5.827844424,5.897264632,6.595458904,6.845502596,7.076826284,7.741473728,7.18983444,6.741480469,6.714259258,4.322000228,7.139561584,7.16993502,6.31833492,5.760247564,7.348737005,7.17991904,6.006769269,6.217250107,3.991045593,7.339858908,5.507826347,6.70045359,4.678128259,5.700467462,7.409399423,6.686514534,5.791840112,6.857993432,4.66681339,6.75490086,6.362838055,5.993244115,5.629385765,7.400887973,7.614717205,7.499853858,4.248003443,6.116884546,7.515707722,4.935506894,6.595458904,6.507810494,6.41449075,7.011238439,7.044405049,5.185906179,6.807367803,7.108534911,7.18983444,6.493471213,6.807367803,5.266824013,6.87037705,6.283569943,6.177937719,6.857993432,5.961183415,6.040037604,6.87037705,5.694908044,7.022378911,6.82019173,7.562250058,7.108534911,7.257397272,6.727934065,6.083234647],
+                                [5.988707406,6.845502596,7.257397272,5.744188011,7.076826284,6.942526235,5.232699126,7.17991904,6.832902669,7.39232601,4.837993685,5.797038925,7.276133713,6.197727813,4.336354807,6.536068446,6.857993432,6.741480469,7.257397272,6.942526235,7.011238439,6.906902618,7.451219356,6.259291321,4.949581621,5.632297302,5.827844424,5.749561083,5.776130314,5.88754964,7.044405049,6.36108404,6.70045359,4.608868368,5.542289009,7.459439816,4.248003443,2.784713357,7.129293322,7.228828308,5.88754964,7.044405049,6.39747784,7.238414294,5.749561083,6.640982366,5.479004152,6.063955871,7.17991904,5.52672614,7.033434014,3.433092984,6.173946914,6.452875434,6.385448294,5.551546778,6.906902618,6.339867814,6.832902669,5.412815391,5.762906862,6.574419447,6.977291373,7.033434014,7.033434014,6.307446741,7.383712931,5.640996822,6.965795826,7.266795909,7.033434014,6.542273529,5.539189836,6.465990784,4.479036498,5.27802193,4.217308278,7.294629938,7.409399423,6.040037604,7.118951452,6.599927715,6.894829887,6.42628153,5.845515141,6.373317599,7.375048122,4.958889063,7.321937112,6.894829887,6.12724119,7.209463114]
+                            ],
+                        averages: [6.4217, 6.4066, 6.3039]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTGS1</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">PTGS1</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>PTGS1</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.rcsb.org/structure/6Y3C" target="_blank" title="check protein details">
+                            <img src="../../images/ptgs1.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Prostaglandin-endoperoxide synthase 1</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>q33.2</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>122370530 - 122395703</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000095303">ENSG00000095303</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P23219/entry">P23219</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000095303-PTGS1/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>PTGS1</i> encodes COX-1, a dual cyclooxygenase and peroxidase that plays an important role in the biosynthesis pathway 
+                    of prostanoids derived AA, with a particular role in the inflammatory response. The cyclooxygenase activity oxygenates AA 
+                    to the hydroperoxy endoperoxide prostaglandin G2 (PGG2), and the peroxidase activity reduces PGG2 to the hydroxy 
+                    endoperoxide prostaglandin H2 (PGH2), the precursor of all 2-series prostaglandins and thromboxanes.  
+                    <i>COX-1</i> is involved in the constitutive production of prostanoids in particular in the stomach and platelets. 
+                    In gastric epithelial cells, it is a key step in the generation of prostaglandins, such as prostaglandin E2 (PGE2), 
+                    which plays an important role in cytoprotection. In platelets, it is involved in the generation of thromboxane A2 (TXA2),
+                    which promotes platelet activation and aggregation, vasoconstriction and proliferation of vascular smooth muscle cells. 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [0.131852846,-0.734524697,0.523632207,-0.968841979,1.093512852,-0.612196335,-0.411586855,-0.153485021,-0.999463417,0.764235736,1.382600857,-0.281710716,-0.385450333,-0.153485021,-0.343633604,-2.920920273,-0.389745948,-0.153485021,-0.158385889,0.522799008,-0.205736366,-0.566435856,0.427917204,-0.153485021,-0.661761586,0.904210466,0.245885034,-0.105263709,1.43980928,-0.772502885,0.329215466,0.089362553,-0.153485021,-0.041010372,-1.204582134,0.380175312,1.013062002,1.173850199],
+                                [0.324211516,-0.555417738,-1.251669302,0.806489045,-0.217111735,-0.174404845,-0.393417536,1.178128203,-1.451902757,-0.153485021,1.387748531,0.526860073,1.024227469,-0.17303628,-0.153485021,0.289539405,0.318415187,-1.345186878,0.898223834,-1.146742052,-1.452242218,-0.551185719,-1.570674345,-0.198872806,1.203614638,-0.288600248,-0.498376405,0.780419295,0.49960866,-0.451241826,0.012425648,-0.979162877,-0.153485021,1.127639882,-0.716066378,-1.185247798,-0.505578245,-0.942121402,-1.832493057,0.884754196,-0.078347357,-0.132783542,0.428807025,0.629519825,-0.591155558,-0.360956812,-0.925705572,0.76701911,-0.85100344,-1.124094149,-0.88423161,0.678793072,-0.153494649,0.150468693,0.216994902,-0.56355029,0.619422402,0.456259451,1.06892528,-0.299357875,-0.09747255,-1.237720929,-0.606640915,0.464950506,-0.316797627,-0.550006608,-0.153475393,1.075142383,0.629808885,0.416580358,-0.47652235,0.288996338,1.236431389,-0.762167102,-0.473039798,0.082402848,-0.153485021,-1.646961323,-1.847206526,0.387175022,0.392119554,1.010006376,-1.088138181,-1.88039681,-1.117399205,-0.524834162,0.441823397,-0.08653801,-0.484729597,0.598117429,-0.307128277,-1.330432552,1.198676443,0.817254863,0.383065564,0.4743997,0.50490509,-0.83318945,0.530690049],
+                                [-0.796230023,-1.883507483,0.126457516,0.487198193,-0.92009014,-1.13753988,-0.525562918,0.365882869,-0.972310877,0.322954928,-0.436757898,-0.27451011,0.610473295,-1.415545417,-0.126747456,-0.469403829,-0.312116941,-0.413574387,0.553635744,-0.254141399,-0.489779361,-1.444977055,-1.170176413,-0.784875604,0.403518604,-1.166596579,0.13211616,-2.59037988,0.202035251,-1.428099948,-1.817068756,1.01431244,0.849911214,-0.153485021,0.131879179,-0.407275558,-0.312964402,0.896853073,-1.029649905,0.516620347,0.191082515,-0.05577423,0.463549222,-0.249407215,0.640824501,-0.030594183,0.622386896,-1.779016337,-0.397434801,-0.256691854,0.171283701,-1.120040216,-1.381678639,-1.390135374,-0.491469931,1.301745661,-1.099009186,-0.235900176,-0.786487226,-0.158625814,-1.714548065,-0.728689075,0.515823448,-0.441661825,-1.096862982,-0.153485021,0.029643701,0.591353888,-0.100389693,-2.459790173,-1.720878203,0.149454487,-1.167980117,-1.659285067,-0.989750082,-1.670364302,-0.499248926,0.06459318,1.146668255,-0.511563143,-1.622212125,0.475178292,-1.19496845,1.023276647,0.131576315,-1.388389447,-1.781409758,-0.37798802,-0.114634929,-0.796633437,0.056292186,0.933081585,0.33552899]
+                        ],
+                        averages: [-0.055501501, -0.11895259, -0.418270677]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>

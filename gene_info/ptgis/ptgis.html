@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTGIS</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">PTGIS</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>PTGIS</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.rcsb.org/structure/2IAG" target="_blank" title="check protein details">
+                            <img src="../../images/ptgis.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Prostaglandin I2 synthase</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>q13.13</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>49503874 - 49568137</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000124212">ENSG00000124212</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/Q16647/entry">Q16647</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000124212-PTGIS/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>PTGIS</i> is a key enzyme in eicosanoid metabolism that catalyzes the isomerization of PGH2 to prostacyclin (PGI2), 
+                    a potent vasodilator and platelet aggregation inhibitor. Additionally, it exhibits dehydratase activity, particularly 
+                    converting (15S)-hydroperoxyeicosatetraenoate (15(S)-HPETE) into corresponding hydroxyeicosatetraenoates (HETEs). This
+                    dual functionality positions <i>PTGIS</i> as a crucial regulator in vascular homeostasis and inflammatory responses.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [2.175556536,1.952657857,2.046124315,0.993196101,1.408657521,1.777775282,1.195328698,1.700224408,-0.163130603,2.108644885,2.335514698,0.117828004,3.32430658,1.455791439,1.085016673,-2.467333943,1.904588142,1.700224408,1.063620286,0.233458623,0.944626097,2.494297835,1.696238694,1.700224408,1.781930383,1.243370519,1.424626534,2.358396262,2.425845977,-0.09662694,1.41447113,2.666140759,3.428021759,0.014869429,0.587326583,2.206361909,1.700224408],
+                                [2.291173278,0.124328135,0.44641505,3.252174927,2.133356378,1.188900938,0.622911614,1.700224408,0.557287542,1.700224408,1.877587213,1.49700936,1.928487819,1.700224408,1.700224408,1.522030632,2.002774518,2.273471131,2.463951969,-0.191471614,0.319039816,0.745185691,0.117030053,1.610213413,2.566028458,1.700224408,1.814066368,1.700224408,2.021060361,0.551225604,2.20482621,1.705252503,1.761310808,1.247611605,3.380978741,-0.058719374,1.70419914,1.559217687,2.054046178,1.443691513,2.439280041,1.99744778,1.700224408,3.123214249,0.709290636,2.659388013,0.243218168,1.700224408,2.441918985,2.330062119,1.79103887,0.907167566,1.700224408,1.257083053,2.185929959,1.429990815,1.274816265,0.96504174,2.756598485,3.085594615,0.470667008,-0.428464918,0.73132229,0.558982681,1.008321943,2.087652925,2.165587196,1.700224408,3.441310835,3.09362947,0.41193598,2.224849093,1.899798214,0.264296212,1.85805661,1.631318517,2.201298239,0.273301036,1.415569395,1.128959817,0.107353098,2.121993449,0.996822574,0.924107489,0.29998311,1.884128993,2.174038826,1.700224408,2.72099635,1.700224408,3.355143157,0.458129983,0.687651983,3.014248158,1.715603485,2.100375558,2.274959354,2.568773941],
+                                [0.569792432,0.376179232,1.700224408,2.92981561,-0.277707109,1.433173124,3.168471957,2.156794613,2.861385715,0.903177132,0.752406071,1.272053058,2.043165994,1.744621823,0.499751511,2.384773736,2.623122385,1.375906873,1.9092662,1.15870541,2.160420062,0.01592569,1.486405467,1.191284697,-0.945596032,-0.555048874,0.780226097,1.112273099,1.2660069,2.242849412,0.566142957,2.31504447,1.738495482,1.663526795,1.700224408,1.461057013,2.919376316,3.158139871,3.119888996,2.895876483,1.700224408,0.156150645,2.212429265,1.671714569,1.700224408,2.321746304,1.858004874,-0.394479117,0.749980415,2.76268048,0.436471031,1.854777643,3.047353416,0.161616849,1.54124719,3.109079683,0.029827425,0.395424799,-0.304921965,1.700224408,-1.266649131,1.377923328,2.197258376,0.695102986,0.548574722,1.700224408,0.31665552,3.004693739,1.043694461,0.136952571,0.229292586,2.619868403,1.882408287,0.520135567,0.835875579,-0.85774865,2.833116778,2.539684911,1.466752396,2.246049269,1.700224408,1.679833622,-0.03633353,1.700224408,1.784428601,1.236535478,3.017391041,1.717495475,0.912274294,1.398361316,1.35854255,2.363277628]
+                        ],
+                        averages: [1.4578, 1.5977, 1.4292]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>

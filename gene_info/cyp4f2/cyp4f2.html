@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYP4F2</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">CYP4F2</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>CYP4F2</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.proteinatlas.org/ENSG00000186115-CYP4F2/structure+interaction" target="_blank" title="check protein details">
+                            <img src="../../images/cyp4f2.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Cytochrome P450 family 4 subfamily F member 2</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>19</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>p13.12</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>15878023 - 15898077</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000186115">ENSG00000186115</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P78329/entry">P78329</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000186115-CYP4F2/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>CYP4F2</i> is a cytochrome P450 monooxygenase that catalyzes the ω-hydroxylation of diverse endogenous 
+                    substrates. It primarily oxidizes long-chain and polyunsaturated fatty acids (PUFAs), converting arachidonic
+                    acid to the vasoactive 20-HETE. The enzyme also inactivates key eicosanoids (e.g., LTB4, LXA4, HETEs) and 
+                    contributes to very long-chain fatty acid (VLCFA) degradation through successive ω-oxidation. Additionally, it
+                    modulates vitamin metabolism by hydroxylating tocopherols (vitamin E) and inactivating phylloquinone (vitamin K1) 
+                    and menaquinone-4 (vitamin K2), thereby influencing their biological activity and retention.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [6.151797946,7.228828308,7.357560802,6.857993432,6.643870617,6.478987979,6.87037705,5.760247564,6.537622221,6.197727813,6.33808563,6.199691973,7.055293283,6.191819237,6.845502596,5.479004152,6.381992777,4.614768728,6.954207945,6.371576286,6.672439486,6.75490086,6.175943696,6.27054763,6.362838055,7.238414294,7.622059143,6.412798458,6.714259258,7.807361363,7.149757279,6.139571816,6.526710493,6.437976728,6.352281832,6.596950046,5.988707406],
+                                [7.139561584,7.087473449,6.75490086,6.07683697,6.965795826,5.663942297,6.82019173,5.837968464,6.257406701,4.517338692,5.850524417,7.087473449,5.923648379,4.797064872,4.837993685,7.066099957,7.491861111,6.004523864,7.39232601,7.400887973,6.085360917,6.542273529,6.46108649,7.569863201,5.575947606,7.467613701,6.501455069,7.044405049,4.5298834,7.076826284,6.672439486,4.336354807,6.191819237,7.74819956,6.76819756,6.781372829,7.686507531,6.977291373,6.31471465,7.303789879,6.294639127,7.312892029,6.421240133,6.686514534,6.217250107,6.643870617,7.238414294,6.611777311,6.832902669,5.472520264,6.906902618,5.675279619,6.009011185,5.314732774,5.575947606,7.741473728,6.714259258,5.995507131,5.675279619,5.325566309,6.832902669,6.578953804,6.475749641,5.872853379,7.330925839,7.39232601,7.569863201,6.470878464,5.995507131,7.149757279,5.507826347,7.72792726,6.727934065,7.238414294,7.098042614,6.053133064,4.797064872,7.774793647,7.622059143,7.011238439,7.584970015,6.246046988,5.392351772,6.714259258,6.965795826,5.590991172,6.906902618,6.106453017,6.517291443,6.906902618,6.619134188,6.988696047,7.303789879,6.76819756,7.375048122,7.72792726,6.70045359,6.033445027],
+                                [5.797038925,7.417860952,6.832902669,6.490265258,7.651058869,7.651058869,6.605864679,6.596950046,6.954207945,7.159881426,5.523593319,5.837968464,6.658225767,6.009011185,5.296494117,6.75490086,6.672439486,6.857993432,7.546902175,6.534512997,7.18983444,7.321937112,7.614717205,6.133419676,6.163921335,5.714272997,6.954207945,5.590991172,6.281716794,6.098053144,6.845502596,6.82019173,6.87037705,5.205588008,5.768210796,6.794428864,3.838044126,4.322000228,7.149757279,7.118951452,6.059636486,7.228828308,7.554596526,7.734716393,5.663942297,6.548452038,6.882655276,5.875313175,7.523569797,6.339867814,7.055293283,2.895496519,6.442960078,7.434636567,6.611777311,5.409424882,7.383712931,6.526710493,6.781372829,5.300160341,5.074719496,6.672439486,7.339858908,6.954207945,6.942526235,6.334514646,6.76819756,5.456181897,7.000011271,6.672439486,7.228828308,6.197727813,6.807367803,6.569870795,5.336319098,5.201673064,5.501470992,7.426273142,7.375048122,6.515715605,6.485442929,6.437976728,6.965795826,5.752240134,6.03124079,6.407709641,7.599920279,4.940213743,7.658218625,6.794428864,6.672439486,7.129293322]
+                            ],
+                        averages: [6.5335, 6.5403,6.4799]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>

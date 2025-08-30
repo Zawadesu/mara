@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKR1C3</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">AKR1C3</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>AKR1C3</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.rcsb.org/3d-view/1RY0" target="_blank" title="check protein details">
+                            <img src="../../images/akr1c3.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Aldo-keto reductase family 1 member C3</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>p15.1</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>5035354 - 5107686</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/Gene/Summary?g=ENSG00000196139;r=10:5035354-5107686">ENSG00000196139</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P42330/entry">P42330</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000196139-AKR1C3/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>AKR1C3</i> encodes cytosolic aldo-keto reductase that catalyzes the NADH and NADPH-dependent reduction of 
+                    ketosteroids to hydroxysteroids, displaying the ability to catalyze both oxidation and reduction in vitro. 
+                    AKR1C3 shows preference as a 17-ketosteroid reductase and has the highest catalytic efficiency for the reduction 
+                    of delta4-androstenedione to form testosterone. It also reduces PGD2 to 11beta-PGF2, progesterone to 20alpha-hydroxyprogesterone 
+                    and estrone to 17beta-estradiol. Lastly, it catalyzes the transformation of the potent androgen dihydrotestosterone (DHT) 
+                    into the less active form, 5-alpha-androstan-3-alpha,17-beta-diol.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [7.286751802,6.580109296,7.911380003,6.217732857,7.388886947,5.396988307,5.76594575,6.875374617,5.555975628,6.710200306,6.891929484,5.421943625,5.927998349,6.265568167,7.635065087,5.211572959,4.569873832,7.523326715,5.227602467,5.439184279,7.168792442,6.215616477,4.91968808,7.129653948,5.785887908,6.82315066,7.483477228,6.667097346,5.234895969,5.874494529,6.881921521,6.215616477,8.055119716,5.886645251,6.215616477,7.186886772,4.944802236],
+                                [5.757929981,5.14965771,5.815616414,7.495479318,6.165825535,6.595995893,5.634773304,6.643364147,5.231839415,7.893374346,7.335068727,5.565143216,7.365080088,6.215616477,6.671562296,4.822296765,5.965585756,7.020313285,7.36000426,5.65499111,4.580579675,5.903869798,4.61717504,7.507564742,6.215616477,6.945233123,5.706408988,5.633846754,6.88834143,6.050571349,6.716689159,5.819399952,6.389780172,7.354866446,5.439978781,5.218273578,5.411056711,7.039511305,5.292203819,6.215616477,7.412823857,5.741596419,6.43592357,6.167177258,4.695381428,6.111784607,5.243969865,6.473540165,7.822067274,5.535592657,6.08294736,7.478446064,5.338160527,7.233667606,6.213496988,7.100220791,7.257265256,5.672657286,6.215616477,7.547164458,5.186837263,4.63375087,7.422106827,6.527750662,7.875300887,7.064494885,6.600403572,6.790224669,7.862798509,6.318043824,5.803312293,6.215616477,7.515076901,5.461243686,5.448065082,5.844013984,6.824054984,6.487338419,7.110592927,5.435928569,7.062952767,6.708297614,3.386355722,6.147569242,5.985177063,7.665179558,7.13417986,5.395309627,4.572604738,6.71756676,6.215616477,4.963811638,7.931511691,6.144264634,7.413501,6.71609922,6.576301424,5.514952281],
+                                [3.619401272,4.099968417,6.586971857,5.183006065,5.926803592,6.17923833,6.097261036,5.928505347,5.702710175,6.025994403,5.903643284,5.609784506,5.745054429,4.77025291,3.468935151,6.626939904,5.542734741,6.665620164,5.641225202,7.709993613,5.886198941,6.247927513,7.014957778,5.467116418,6.610000157,7.001577085,7.345476215,6.380893917,4.052789736,5.725743883,5.913870753,4.644438921,5.940986551,6.958320706,6.654865123,5.771941025,5.200429806,7.714657657,4.888202594,5.90995067,5.529721016,5.848052008,7.363784338,6.937909306,6.234233051,5.605331352,7.981612945,4.174158704,6.740266488,6.471784124,6.215616477,5.026038682,5.693333619,5.868457129,4.893905789,6.517478853,5.971003161,6.473689517,5.598031651,5.954182349,6.686864657,4.912985114,6.292284817,5.974866544,6.614986579,7.253686783,4.951769612,6.731441231,5.738124695,6.60379397,6.46193449,7.170826404,4.972449121,5.337008124,6.14545329,3.796452397,6.057118804,7.229703272,7.020068768,7.565025894,5.744104571,7.201839666,5.06041493,5.874779756,7.344526721,7.304365013,6.152589069,6.310823604,5.757356671,5.956779213,7.89935088,5.535334483]
+                        ],
+                        averages: [6.3376, 6.2833, 6.0339]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../index/script.js"></script>
+
+</body>
+</html>

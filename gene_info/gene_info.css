@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+:root{
+    --main-color:#ff9aa2;
+    --black:#4a4a4a;
+    --bg: #b4d9f9;
+    --border:.1rem solid rgba(255,255,255,.3);
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline:none; border:none;
+    text-decoration: none;
+    text-transform: none;
+    transition: .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: #fff;
+    border-radius: 5rem;
+}
+
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
+  
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+}
+  
+.bg3 {
+    animation-duration:5s;
+}
+
+section{
+    padding: 2rem 7%;
+}
+
+.heading{
+    color: var(--main-color);
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+}
+
+.header{
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 7%;
+    border-bottom: var(--border);
+    position: fixed;
+    top: 0;left: 0;right: 0;
+    z-index: 1000;
+}
+
+.header .logo img{
+    height: 8rem;
+}
+
+.header ul{
+    list-style: none; 
+    display: flex;  
+}    
+
+.header .navbar a{
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.header .navbar a:hover{
+    color: var(--main-color);
+    border-bottom: .1rem solid var(--main-color);
+    padding-bottom: .5rem;
+}
+
+.header .icons div{
+    color: #fff;
+    cursor: pointer;
+    font-size: 2.5rem;
+    margin-left: 2rem;
+}
+
+.header .icons div:hover{
+    color: var(--main-color);
+}
+
+#menu-btn{
+    display: none;
+}
+
+/* intro */
+.intro{
+    margin-top: 11.5rem;
+    margin-left: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    background: #2d97f4;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.intro a {
+    color: #fff; 
+    text-decoration: none; 
+  }
+
+  .intro a:link,
+  .intro a:visited {
+    color: var(--main-color); 
+  }
+
+  .intro a:hover {
+    color: #b5ead7; /* 鼠标悬停时的颜色 */
+  }
+
+  .intro a:active {
+    color: #b5ead7; /* 链接被点击时的颜色 */
+  }
+
+.intro .gene-table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 14px;
+}
+
+.gene-table th {
+    background-color: #f8f9fa;
+    color: var(--main-color);
+    font-size: 16px;
+    width: 1200px;
+
+}
+
+.gene-table td:first-child {
+    width: 20%; 
+}
+
+.gene-table td:nth-child(2) {
+    width: 40%; 
+}
+
+.gene-table td:nth-child(3) {
+    width: 40%; 
+}
+
+.gene-table td{
+    text-align: justify;
+}
+
+.gene-table td.image-cell {
+    height: 50px;
+    text-align: center;
+}
+.image-cell img {
+    max-width: 70%;
+    height: auto;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.intro .content{
+    flex: 1 1 45rem;
+    padding: 2rem;
+}
+
+.intro .content p{
+    font-size: 1.8rem;
+    color: #fff;
+    padding: 1rem 0;
+    line-height: 1.8;
+    text-align: justify;
+    text-justify: inter-word; 
+}
+
+/* table */
+
+/* 基础表格样式 */
+.gene-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.gene-table th, .gene-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.gene-table th {
+    background-color: #f8f9fa;
+}
+
+.plot {
+    margin-top: 6rem;
+    margin-left: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.plot .note{
+    font-size: 1.8rem;
+    color: #000;
+    padding: 0.5rem 0;
+    line-height: 1.8;
+    text-align: justify;
+    text-justify: inter-word; 
+}
+
+.footer .ack h3{
+    font-size: 2rem;
+    text-align: center;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.footer .ack p{
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fff;
+}
+
+.footer{
+    background: #2d97f4;
+    text-align: center;
+}
+
+.footer .credit{
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: lighter;
+    padding: 1rem;
+}
+
+.footer .credit span{
+    color: var(--main-color);
+    font-weight: bolder;
+}
+
+
+
+
+
+@keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
+
+/* media queries */
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+
+    .header{
+        padding: 1.5rem 2rem;
+    }
+
+    section{
+        padding: 2rem;
+    }
+}
+
+@media (max-width:768px){
+   #menu-btn{
+        display: inline-block;
+   }
+   .header ul{
+        flex-direction: column;
+   }
+
+   .header .navbar{
+        position: absolute;
+        top: 100%; right: -100%;
+        background: #b5ead7;
+        width: 30rem;
+        height: calc(100vh - 9.5rem);
+   }
+
+   .header .navbar.active{
+        right:0;
+   }
+
+   .header .navbar a{
+        color: #fff;
+        display: block;
+        margin: 1.5rem;
+        padding: 3rem;
+        font-size: 2rem ;
+   }
+
+   .header .search-form{
+    width: 50%;
+    right: 2rem;
+   }
+
+   .home{
+        background-position: left;
+        justify-content: center;
+        text-align: center;
+   }
+
+   .home .content h3{
+        font-size: 4.5rem;
+   }
+
+   .home .content p{
+        font-size: 1.5rem;
+   }
+}
+
+@media (max-width:450px){
+    html{
+        font-size: 50%;
+    }
+}

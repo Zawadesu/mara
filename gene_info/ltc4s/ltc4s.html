@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LTC4S</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">LTC4S</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>LTC4S</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.proteinatlas.org/ENSG00000213316-LTC4S/structure+interaction" target="_blank" title="check protein details">
+                            <img src="../../images/ltc4s.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Leukotriene C4 synthase</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>q35.3</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>179793980 - 179796647</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000213316">ENSG00000213316</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/Q16873/entry">Q16873</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000213316-LTC4S/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>LTC4S</i> catalyzes the conjugation of leukotriene A4 with reduced glutathione (GSH) to form leukotriene C4
+                    with high specificity. It can also catalyze the transfer of a glutathionyl group from GSH to 13(S),14(S)-epoxy-
+                    docosahexaenoic acid to form maresin conjugate in tissue regeneration 1 (MCTR1), a bioactive lipid mediator 
+                    that possess potent anti-inflammatory and proresolving actions. 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [-0.038695248,0.774375932,-0.471206668,0.089823534,-1.225140004,-0.247828602,-0.869132373,0.724388337,-0.496050903,1.098150021,-0.489222352,0.611663427,-1.450167226,0.876888193,0.411285224,-1.447241278,-0.051343838,0.115372896,0.500567532,1.322828056,0.576522138,-0.13586022,0.708010614,1.413610329,0.54783476,0.346554155,0.135902556,-0.226798642,0.115372896,-1.46430135,0.206680729,0.999552695,0.115372896,0.548959353,-0.966455068,0.193140919,-0.23274862],
+                                [0.830417598,-0.808490409,-0.366014604,0.349342629,1.088569049,-0.152713395,-0.009724727,-0.903743545,-0.286752898,-0.60320043,0.430649247,0.809990584,0.115372896,0.119063956,0.115372896,0.115372896,0.115372896,-0.750244005,0.894945782,-0.349422912,-0.741083145,-0.048271971,0.160016608,-1.560910958,0.309455617,1.237392396,-0.577639962,-0.266352377,-1.769290349,-0.02548684,0.808030769,-0.599953982,0.540285225,0.755451646,-0.714829815,-0.038323336,-0.244150167,-1.465735159,-1.541034316,-1.034163271,-1.055591295,0.584087,0.816345753,0.50793161,-0.400497477,-0.420045601,1.496881573,-0.122384519,-0.316167029,-2.246655617,-0.14709347,1.063875648,-1.091888055,0.828631582,-0.8547321,-0.2515714,0.249493885,1.306758026,0.80667051,-3.444042527,1.308483201,-0.115864753,-0.1745237,1.564724471,0.80524292,-0.622092215,0.289515798,1.525878444,0.212494634,0.23529817,-0.938472624,0.267811427,0.356312866,0.265724926,1.462701516,-0.354870184,0.617448952,0.851175347,-0.953861013,-0.590879569,-0.916959595,-0.578232182,1.00964815,-0.15042821,0.342145089,-0.893825913,0.251555502,0.40811401,0.197412513,0.567058626,-2.112468491,0.446891405,0.115372896,0.874545185,0.190083825,0.435532589,0.218669591,-0.807798258],
+                                [0.091584752,-0.668870371,0.374510926,0.100708589,0.305293506,-0.249083124,-1.536072088,1.074108058,-1.255928483,0.218793565,-2.019884008,-0.037274792,-0.00095538,-0.838553415,0.952482674,-1.625644881,0.676023628,-1.091512936,0.161100836,0.395194446,0.050494732,-0.965381401,-2.135674769,0.225089799,-1.283270679,-1.53629385,1.002810516,-1.092940138,0.675246869,-0.732876545,-1.848801,0.703782894,0.358958826,0.279875372,0.840032123,-0.044176875,-0.955239395,-1.34057956,0.077024185,0.812498225,0.007224211,0.268302635,0.301564236,-0.238197322,0.016624681,0.484973337,0.815698381,-0.922021482,0.892771808,-0.329444244,-0.050474031,0.074190283,-0.642614654,-0.330256602,0.518726479,-1.4874798,-0.641169419,1.287625954,0.431901043,-1.933567704,-1.924974027,-0.573320882,0.115372896,-0.022847589,0.221134668,0.723453714,0.855511377,0.321489449,0.26165116,0.516469071,-0.385367416,0.178580801,-0.158389109,0.146629157,-1.392637015,-0.734267874,-1.869448629,0.735678136,1.366890087,-0.595975402,-0.782878498,0.401564938,0.111672368,1.141360851,0.083941767,-0.048251086,-1.186902231,-0.564446076,-0.61628852,-0.257084897,-0.124057987,0.844819481]
+                        ],
+                        averages: [0.0708, -0.0321, -0.1801]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src="../../mara/script.js"></script>
+
+</body>
+</html>

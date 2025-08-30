@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYP2E1</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">CYP2E1</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>CYP2E1</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.proteinatlas.org/ENSG00000130649-CYP2E1/structure+interaction" target="_blank" title="check protein details">
+                            <img src="../../images/cyp2e1.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Cytochrome P450 family 2 subfamily E member 1</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>q26.3</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>133520406 - 133561220</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000130649">ENSG00000130649</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P05181/entry">P05181</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000130649-CYP2E1/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>CYP2E1</i> catalyzes NADPH/O₂-dependent ω-1 hydroxylation of fatty acids, with highest activity toward 
+                    saturated fatty acids. It may also contribute to xenobiotic metabolism (probable). This enzyme plays a role
+                    in both endogenous fatty acid oxidation and potential detoxification pathways.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [11.05534413,10.87060438,12.17540328,12.12492291,10.44512972,12.11406797,11.04326726,12.22820872,12.10871099,11.42540003,12.37109624,10.47042603,10.22436471,11.91178182,12.15040767,10.22646157,11.86998743,9.688939141,10.79808374,9.321923586,11.46021065,11.81609206,10.56565524,11.5181225,12.15675338,11.76921428,12.39962801,11.34422988,11.92708941,11.04959742,11.58411739,12.41409615,11.43266247,10.92832664,11.69830574,11.7854774,8.439332242],
+                                [11.84677183,11.65281406,10.62531707,11.83029375,10.67577272,11.66402544,11.50319517,10.41574282,11.91737618,10.76192599,11.91047822,11.22090488,8.98851428,12.24579363,10.12281635,11.97432173,11.46563833,11.53108461,11.76009659,11.51174327,10.57426333,11.02669011,11.25959675,11.93227049,11.96691672,11.42934449,11.61062856,11.06736108,9.543329611,12.4371203,11.43072486,10.83455875,10.49631554,11.32503893,11.46319789,11.2411019,11.71212328,11.68659288,9.795937367,11.18908388,11.99930279,11.30977248,8.864319263,10.25694106,10.12316566,11.30056477,11.71519455,8.891598419,11.38666062,11.51989224,11.36888346,11.25226982,9.306733879,11.19294065,10.82349542,11.60118626,11.90759712,10.60437809,11.71342131,11.3930799,11.80445414,11.3522261,11.6342216,10.93046459,11.75440778,11.30674584,11.71513877,10.36984922,11.14775887,12.64814431,10.33377144,12.5594323,11.85261573,12.04067021,11.13413172,10.90386754,11.04694731,11.51066578,11.92332414,11.48717228,12.51255555,11.86577618,9.929027559,10.16976344,11.63245045,10.87009573,12.28747893,10.9523707,11.32836134,12.21042509,11.16910511,11.49584554,11.24134029,11.93745879,11.32503893,12.51952839,11.26475984,10.83944868],
+                                [11.34142486,10.87841192,9.796930267,9.418198383,11.23831576,11.59851828,10.90921882,12.31558859,9.866595847,11.88395334,11.00180998,11.50439247,10.42708338,11.33564213,8.983107617,11.3337094,11.7049329,11.98312223,11.38858295,10.1681343,11.33968914,11.24478065,11.26678127,11.32170886,11.27344071,10.38435314,11.06916845,10.55479124,10.02485016,10.80848239,12.10927273,11.02008475,11.03842589,11.05210678,9.684622401,12.02263517,7.26294987,9.917300465,8.536025694,10.8610489,7.233255362,11.30199396,11.96438455,11.85754602,11.18269292,10.74211656,12.24093768,10.97321734,11.97903607,11.15402757,11.8741134,10.37037246,11.17325926,11.48516062,11.26008507,10.80300983,11.46520977,10.28376091,11.46003142,9.564439143,10.23159441,10.21805581,11.44465827,11.03308638,11.83719072,10.6058045,10.60285751,11.51387117,11.29645225,12.44210142,11.93194191,11.45822768,10.37223497,10.62511612,10.5601618,9.750199484,10.63430375,11.87687412,12.15830389,11.52512974,11.05317312,12.29891057,11.85173382,11.01757469,11.68857422,10.61427826,10.98387788,9.861345947,11.34951401,11.19257701,11.31368858,11.13260319]
+                            ],
+                        averages: [11.3220, 11.2570, 10.9643]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>

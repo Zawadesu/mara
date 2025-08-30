@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGT5</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">GGT5</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>GGT5</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.proteinatlas.org/ENSG00000099998-GGT5/structure+interaction" target="_blank" title="check protein details">
+                            <img src="../../images/ggt5.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Gamma-glutamyltransferase 5</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>22</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>q11.23</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>24219654 - 24245108</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000099998">ENSG00000099998</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P36269/entry">P36269</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000099998-GGT5/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>GGT5</i> is a specialized enzyme that hydrolyzes the γ-glutamyl bond of glutathione and glutathione 
+                    conjugates (e.g., leukotriene C4), but cannot cleave simple γ-glutamyl amino acids like γ-glutamyl leucine. 
+                    Beyond hydrolysis, it mediates transpeptidation reactions to generate novel γ-glutamyl compounds. Importantly, 
+                    GGT5 regulates immune responses by inactivating geranylgeranyl glutathione through γ-glutamyl group removal, 
+                    highlighting its role in glutathione metabolism and immune modulation.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [5.207357987,4.818380218,4.365909457,4.623790793,4.196835201,4.840714991,3.680954414,4.946768284,4.3129628,5.827747904,4.732676223,4.146158273,5.114104617,3.421209832,4.011459857,1.534415258,5.016612202,4.581896524,5.320239153,3.536935659,5.168654069,3.926502376,4.489138277,5.860622687,4.310434649,4.64942577,4.48123435,5.547974148,4.581896524,2.90931613,4.958759173,4.694885763,4.581896524,4.08701299,3.785759774,4.607490111,4.581896524],
+                                [4.490454608,3.656999681,4.55505535,4.031315789,4.581896524,3.825968751,4.459411945,4.96411672,3.764845058,5.296259161,4.950300432,5.427291052,4.467879392,4.58343484,4.581896524,5.442004609,4.731118058,4.004824951,4.770829046,4.382093104,2.953187002,4.405502305,4.62622885,3.954177695,4.952296287,4.64721088,2.715377246,5.461875571,5.360662759,3.589799434,4.776372494,2.458145736,4.561307805,4.487724292,5.016554262,3.078486872,5.226940041,3.655031194,3.620199294,4.461377943,4.63650862,5.194090993,5.78579377,4.70868387,3.310392476,4.203443935,5.522639591,5.435998554,4.925377597,4.230702581,4.574555686,4.797765266,5.051054465,5.277843446,4.655288852,5.129196453,4.69070203,4.765327875,4.774881919,4.12803764,5.171675211,3.522068307,3.953488751,3.936100803,4.964620426,4.580356566,4.992537327,4.581896524,5.651706139,4.054865838,3.390199917,4.371663402,5.291025156,3.959380686,5.329794545,4.697601477,5.290726654,4.362063043,4.332521767,5.241954558,4.148462346,4.072971844,3.648016688,3.935968844,4.103547995,4.248216024,5.195485404,4.474169935,5.405281045,5.162109308,3.203708595,3.753358504,4.467807676,4.756927206,4.22124296,4.684700939,5.533195775,4.614114978],
+                                [4.530464083,4.499616313,4.581896524,5.423090692,4.062449874,5.221119197,3.713596846,4.677694275,4.775003118,4.715865922,4.32355742,5.404484228,4.605316534,4.715959246,3.683191142,3.500419663,4.703903573,4.296883178,5.357939017,4.584655895,4.802224242,2.837279248,4.513787592,4.920669648,3.66996784,2.919061624,4.68073505,3.286686016,4.569879906,4.34020618,4.099842214,4.050971781,4.76083303,5.311023494,5.49181783,4.882872884,3.950972243,5.051050113,5.21189608,5.818058047,4.581896524,3.892284156,4.162999499,4.538327083,4.581896524,5.302512811,5.56908394,3.598329471,4.516759002,4.930382533,4.511018867,5.216509188,4.367413004,3.969749128,5.524110703,4.86321494,3.686971077,4.913708028,3.503933837,3.742868551,4.006010713,5.127592012,5.519529324,3.149049581,4.657365616,5.838412294,4.604575467,4.164263351,4.748101588,4.255523393,4.685822441,4.573265448,5.171459053,4.927559912,3.581929656,2.938846574,4.123542049,4.927242258,4.650040733,3.519378353,4.66127075,5.285927412,4.709979832,4.581896524,3.462274859,4.573992484,3.061864312,3.633803171,4.658074349,4.357629415,4.784854668,5.500559884]
+                            ],
+                        averages: [4.4719, 4.5110,4.4887]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>

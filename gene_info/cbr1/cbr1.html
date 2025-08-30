@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genes</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="../gene_info.css">
+    <!-- box plot link-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+    
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="../../images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+           <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../pathways.html">Pathways</a></li>
+            <li><a href="../../predictor.html">Predictor</a></li>
+            <li><a href="../../genes.html">Genes</a></li>
+            <li><a href="../../future.html">Future</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts-->
+
+<section class="intro" id="intro">
+    <div>
+        <h1 class="heading">CBR1</h1>
+    </div>
+
+    <div>
+        <table class="gene-table">
+            <thead>
+                <tr>
+                    <th colspan="3">GENE INFORMATION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gene name</td>
+                    <td><i>CBR1</i></td>
+                    <td rowspan="8" class="image-cell">
+                        <a href="https://www.rcsb.org/structure/1WMA" target="_blank" title="check protein details">
+                            <img src="../../images/cbr1.png" alt="">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Carbonyl Reductase 1</td>
+                </tr>
+                <tr>
+                    <td>Gene type</td>
+                    <td>Protein coding gene</td>
+                </tr>
+                <tr>
+                    <td>Chromosome</td>
+                    <td>21</td>
+                </tr>
+                <tr>
+                    <td>Cytoband</td>
+                    <td>q22.12</td>
+                </tr>
+                <tr>
+                    <td>Chromosome location(bp)</td>
+                    <td>36069941 - 36073166</td>
+                </tr>
+                <tr>
+                    <td>Ensembl</td>
+                    <td><a href="http://feb2023.archive.ensembl.org/Homo_sapiens/geneview?gene=ENSG00000159228">ENSG00000159228</a></td>
+                </tr>
+                <tr>
+                    <td>UniProt</td>
+                    <td><a href="https://www.uniprot.org/uniprotkb/P16152/entry">P16152</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="gene-table">
+        <thead>
+            <tr>
+                <th>PROTEIN FUNCTION<a href="https://www.proteinatlas.org/ENSG00000159228-CBR1/summary/gene" title="Originated from The Human Protein Atlas"><sup>i</sup></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <i>CBR1</i> encodes CBR1, an NADPH-dependent reductase with broad substrate specificity. CBR1 catalyzes the reduction 
+                    of a wide variety of carbonyl compounds including quinones, prostaglandins, menadione, plus various xenobiotics. 
+                    It converts prostaglandin E to prostaglandin F2-alpha, which can promote uterine contractions, enhance gastrointestinal motility, and dilate blood vessels.
+                    CBR1 can also bind glutathione, which explains its higher affinity for glutathione-conjugated substrates. 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- intro section ends-->
+
+<!-- plot section starts-->
+<section class="plot">
+    <h1 class="heading">Boxplot</h1>
+    <div id="boxplot-container" style="width: 800px; height: 600px;"></div>
+
+    <script>
+        
+        const chartDom = document.getElementById('boxplot-container');
+        const myChart = echarts.init(chartDom);
+
+        // calculate parameters
+        function calculateBoxData(dataArray) {
+            const sorted = [...dataArray].sort((a, b) => a - b);
+            const n = sorted.length;
+            
+            return [
+                sorted[0], // min
+                sorted[Math.floor(n * 0.25)], // Q1
+                sorted[Math.floor(n * 0.5)], // median
+                sorted[Math.floor(n * 0.75)], // Q3
+                sorted[n - 1] // max
+            ];
+        }
+
+        // read data
+        function fetchData(gene, ages) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        categories: ['40-49', '50-59', '60-69'],
+                        data: [
+                                [6.600488318,6.173569211,5.702433144,7.047963649,5.192470366,5.167245514,5.605129821,5.306138266,5.621978584,5.684832761,5.099459329,5.280830147,5.685488885,5.564558037,5.702433144,2.981405166,5.446312481,5.972281381,5.078921463,5.366262756,5.957146164,5.702433144,4.202707642,6.588875009,5.108311173,6.02389626,7.072062914,5.95863855,5.682427223,5.834771883,4.632611396,6.859895027,7.032839198,5.00527871,6.121877444,5.552908822,4.44650107],
+                                [5.842943644,6.068335461,5.122519497,5.48645052,5.957988867,4.595760239,5.627458009,5.261715089,5.636038724,5.8012311,5.588570734,6.261032405,5.702433144,6.941341105,5.993563416,5.97382018,6.798400515,4.978882028,5.702433144,5.956314585,4.452345037,5.220682072,5.065059557,6.896102281,5.958039924,5.368653124,5.0221858,5.972065359,4.644133161,5.518116495,6.295058086,5.37632859,4.951186783,7.043278879,5.350645752,5.679471654,7.071204907,6.006899396,5.118550766,6.857781989,5.148490818,6.400807727,5.945382967,5.332539669,4.423887383,5.725719347,5.966158183,5.090988888,6.310321941,3.601387504,6.61090672,4.589631673,5.326900421,4.380043673,4.499456865,7.034083627,4.977719535,5.497229129,5.702433144,4.731791479,6.069807409,5.25109038,5.374316164,4.849944232,6.283195799,6.375852674,6.86650003,5.0708959,6.074471184,5.859477637,3.482241656,5.702433144,6.280538807,5.585085726,5.680504401,5.16539746,5.777790534,6.399866633,7.030115331,6.16902504,5.217362569,5.374601342,4.739043381,5.920762529,4.982966203,5.687740992,6.965403363,5.007020537,4.771838051,6.581577216,5.111719935,5.629126353,6.690039889,6.722944111,6.618717321,6.369777045,5.168160629,5.649563728],
+                                [5.196599176,6.238288173,6.494204375,5.825269197,5.821847948,6.195410597,4.351833243,6.053830332,5.650988527,6.487520114,5.090844964,4.218781168,5.962856685,5.576476788,3.682966502,5.480316831,5.997136566,5.312984576,6.252725977,6.649371157,5.321058609,5.84057653,6.267505835,4.268681409,6.035933968,4.310732736,5.518059827,5.613852805,4.98825295,3.961465901,5.437234398,5.288524677,5.847490873,4.636746411,5.88751796,6.487655164,4.391348431,5.601845057,6.152163134,6.548647773,4.972881019,6.122666507,5.689953258,6.451506216,5.144605224,5.594826194,6.481618629,4.512087794,6.461690618,5.170670201,5.702433144,4.576685384,5.463851293,6.618037451,5.039445504,5.410829519,6.287716073,5.850001761,5.925292135,5.038278137,4.642666919,5.491099492,6.180368689,5.946543728,6.104783239,6.157130641,5.980637721,4.091496743,6.300471541,6.34417516,6.276491082,6.529886522,5.011093045,5.424314121,3.262589506,3.739405292,4.085433155,7.105520945,6.198002957,6.04951533,5.756046536,5.870229075,6.408806951,4.757129951,4.756857839,6.155366735,5.257957265,4.110864324,6.232871774,6.312095156,6.570631418,6.809838855]
+                        ],
+                        averages: [5.6233, 5.6634, 5.5802]
+                    });
+                }, 500);
+            });
+        }
+
+        // config
+        const initialOption = {
+            title: {
+                text: 'Gene Expression Distribution',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.seriesType === 'boxplot') {
+                        return [
+                            'Age: ' + params.name,
+                            'Upper: ' + params.data[4].toFixed(4),
+                            'Q3: ' + params.data[3].toFixed(4),
+                            'Median: ' + params.data[2].toFixed(4),
+                            'Q1: ' + params.data[1].toFixed(4),
+                            'Lower: ' + params.data[0].toFixed(4)
+                        ].join('<br/>');
+                    } else if (params.seriesType === 'line') {
+                        return `Average: ${params.data.toFixed(4)}`;
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: 'Ages',
+                data: [],
+                axisLabel: { rotate: 45 }
+            },
+            yAxis: {
+                type: 'value',
+                name: 'Expression Levels',
+                min: 'dataMin'
+            },
+            dataZoom: [
+                { type: 'slider', yAxisIndex: [0], start: 0, end: 100 },
+                { type: 'inside', yAxisIndex: [0] }
+            ],
+            series: [
+                {
+                    name: 'Expression',
+                    type: 'boxplot',
+                    data: [],
+                    itemStyle: {
+                        color: '#409EFF',
+                        borderColor: '#30475E',
+                        opacity: 1
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            borderWidth: 2,
+                            shadowBlur: 5,
+                            shadowColor: 'rgba(0,0,0,0.3)'
+                        }
+                    },
+                    z: 1
+                },
+                {
+                    name: 'Average',
+                    type: 'line',
+                    data: [],
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        color: '#FF6B6B'
+                    },
+                    lineStyle: {
+                        width: 2
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            width: 3,
+                            color: '#FF0000'
+                        },
+                        itemStyle: {
+                            color: '#FF0000'
+                        }
+                    },
+                    z: 2
+                }
+            ]
+        };
+
+        myChart.setOption(initialOption);
+
+        // load data
+        async function loadData(gene = 'PTGS1', ages = 'All') {
+            const { categories, data, averages } = await fetchData(gene, ages);
+            
+            // calculate for each group
+            const boxData = data.map(ageData => 
+                calculateBoxData(ageData)
+            );
+            
+            myChart.setOption({
+                xAxis: { data: categories },
+                series: [
+                    { data: boxData }, 
+                    { data: averages }
+                ]
+            });
+        }
+
+        myChart.on('mouseover', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 0.3 }
+                }]
+            });
+        });
+
+        myChart.on('mouseout', { seriesIndex: 1 }, () => {
+            myChart.setOption({
+                series: [{
+                    itemStyle: { opacity: 1 }
+                }]
+            });
+        });
+
+        loadData();
+        window.addEventListener('resize', () => myChart.resize());
+    </script>
+    <div class="note">
+        <p>NOTE: Gene expression values are scaled by log<sub>2</sub>(TPM+0.001).</p>
+    </div>
+</section>
+<!-- plot section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src ="../../mara/script.js"></script>
+
+</body>
+</html>
