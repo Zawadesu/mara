@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MARA</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="mara/style.css">
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="pathways.html">Pathways</a></li>
+            <li><a href="predictor.html">Predictor</a></li>
+            <li><a href="genes.html">Genes</a></li>
+            <li><a href="future.html">Future</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+    <div class="search-form">
+        <input type="search" id="search-btn" placeholder="Type a gene symbol...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+</header>
+
+<!-- header section ends-->
+
+<!-- home section starts -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>Arachidonic Acid Metabolism in Ageing</h3>
+        <p>A scientific website to predict expression changes of arachidonic acid metabolism pathway 
+            related genes in ageing.</p>
+        <a href="#" class="btn">Predict now</a>
+    </div>
+</section>
+
+<!-- home section ends -->
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- about section starts -->
+
+<section class="about" id="about">
+
+    <h1 class="heading"> <span>about</span> mara</h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/about.png" alt="">
+        </div>
+
+        <div class="content">
+            <p>MARA(Metabolsim of Arachidonic acid in Ageing) is a python-based model for 
+                prediction of expression level changes of the arachidonic acid metabolism pathway 
+                related genes in ageing.The model is able to achieve relatively precise prediction
+                in the organ level, and it's now available for humans' liver. 
+            </p>
+            <p>The model data is sourced from GTEx (v10). Users can simply type their ages to get 
+                the expression level of AA metabolism related genes, and with these data as a reference,
+                users can check if they are in a reasonable state and thus decide whether to intervent.</p>
+        </div>
+    </div>
+</section>
+
+<section class="aa" id="aa">
+
+    <h1 class="heading"> <span>arachidonic</span> acid</h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/logo.png" alt="">
+        </div>
+
+        <div class="content">
+            <h3>What is arachidonic acid?</h3>
+            <p>Arachinodonic acid (AA) is a 20-carbon polyunsaturated fatty acid found in the human body, 
+                which is widely found in the cell membrane of mammals. It is essential to maintain the 
+                fluidity and function of the cell membrane, and can be converted into a variety of bioactive 
+                substances through different metabolic pathways.
+            </p>
+            <p>It can produce prostaglandins, thromboxanes, leukotrienes, etc., which are of great importance 
+                in physiological processed such as inflammatory response, pain perception, vasodilation, and so on. 
+            </p>
+            <p>AA mainly takes part in three metabolic pathways: cyclooxygenase pathway (COX), lipoxidase 
+                pathway (LOX) as well as cytochrome P450 (CYP450). MARA focuses on these pathways.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- about section ends -->
+ 
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src="mara/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARA Predictor</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="pathways/pathways.css">
+
+    <!-- for splashscreen -->
+    <style>
+        #loading { outline: none; border: none; background: transparent }
+    </style>
+    <script type="module">
+        const loading = document.getElementById('loading');
+        addEventListener('py:ready', () => loading.close());
+        loading.showModal();
+    </script>
+
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pathways.html">Pathways</a></li>
+            <li><a href="predictor.html">Predictor</a></li>
+            <li><a href="genes.html">Genes</a></li>
+            <li><a href="future.html">Future</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+    <div class="search-form">
+        <input type="search" id="search-btn" placeholder="Type a gene symbol...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+</header>
+
+<!-- header section ends-->
+
+<!-- body section starts -->
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- about section starts -->
+
+
+<section class="about" id="about">
+
+    <div class="row">
+
+        <div class="content">
+            <h1 class="heading"> <span>arachidonate</span> pathways</h1>
+
+            <p>Arachidonic Acid (AA) is a 20-carbon polyunsaturated fatty acid (PUFA) found in the human body, 
+            widely present in the cell membranes of mammals, and is crucial for maintaining the fluidity and 
+            function of cell membranes. When cells are stimulated by inflammation or injury, phospholipase A2 (PLA2)
+             is activated, hydrolyzing membrane phospholipids to produce free AA. After that, AA is transformed 
+             into various bioactive substances through three main metabolic pathways: the cyclooxygenase pathway (COX),
+              the lipoxygenase pathway (LOX), and the cytochrome P450 pathway (CYP450). These metabolic products 
+              play key roles in physiological processes such as inflammatory responses, pain perception, and vasodilation.
+            </p>
+            
+        </div>
+
+        <div class="image">
+            <img src="images/pathways.png" alt="">
+        </div>
+    </div>
+
+</section>
+
+<section class="aa" id="aa">
+
+    <h2 class="heading"> <span>COX</span> pathway</h2>
+
+    <div class="row">
+
+        <div class="content">
+            <p>The COX pathway is primarily composed of prostaglandin synthases, consisting of two isoenzymes, 
+            COX-1 and COX-2, which serve as the upstream core enzymes to convert AA into prostaglandin H2 (PGH2). 
+            PGH2 is subsequently transformed into other prostaglandins and thromboxanes through downstream enzymes. 
+            </p>
+            <p>The main distinction between the two enzymes lies in that COX-1 is constitutively expressed, whereas COX-2 
+            is typically expressed in response to cytokines (such as IL-1 and TNF-α) and has a relatively short half-life. 
+            The expression preferences of COX pathway-related enzymes vary among different cell types; for example, mast 
+            cells predominantly produce prostaglandin D2 (PGD2), which is involved in inducing allergic responses, 
+            while macrophages produce thromboxane A2 (TXA2) among others, promoting platelet aggregation and 
+            vasoconstriction during tissue injury.
+            </p>
+            
+        </div>
+    </div>
+
+    <h2 class="heading"> <span>LOX</span> pathway</h1>
+
+    <div class="row">
+
+        <div class="content">
+            <p>Enzymes in the LOX pathway are mainly named according to the site of oxidation of AA, among which 
+            the most studied is 5-LOX, which adds an oxidative group at the fifth carbon atom. 5-LOX converts AA to 
+            leukotriene A4 (LTA4) through a two-step reaction involving the intermediate product 5-hydroperoxyeicosatetraenoic acid (5-HPETE). 
+            LTA4 is further converted to leukotriene B4 (LTB4) by LTA4 hydrolase, which acts as a chemotactic factor recruiting 
+            neutrophils and promoting the inflammatory response. LTA4 can also be converted to leukotriene C4 (LTC4) by LTC4 synthase, 
+            and further transformed into leukotriene D4 (LTD4) by gamma-glutamyl transferase; they belong to cysteinyl leukotrienes 
+            (CysLTs) and may cause bronchoconstriction, participating in asthma responses.
+            </p>
+            <p>In addition to LTs, the LOX pathway may also produce lipoxins (LXs). After LTA4 is produced in neutrophils through 5-LOX, 
+            it may transfer to platelets, where it is converted into lipoxin A4 (LXA4) and lipoxin B4 (LXB4) through 12-LOX. LX acts as 
+            an anti-inflammatory factor, mediating the resolution of inflammation.
+            </p>
+        </div>
+    </div>
+
+    <h1 class="heading"> <span>CYP450</span> pathway</h1>
+
+    <div class="row">
+
+        <div class="content">
+            <p>The genes of the CYP pathway are predominantly expressed in hepatocytes, cardiomyocytes, 
+            vascular endothelial cells, and other cell types. It represents a large family, with the main 
+            subtypes including CYP2C and CYP2J. These genes primarily encode two types of enzymes, namely 
+            ω-hydroxylase and epoxygenase. The ω-hydroxylase metabolizes AA into hydroxyeicosatetraenoic acids (HETE), 
+            playing a role in the regulation of vascular functions, cell proliferation, and other processes; 
+            whereas, epoxygenase converts AA into epoxyeicosatrienoic acids (EET), with bioactive EET produced in the liver. 
+            EET can induce vasodilation, regulate cancer cell progression, promote the differentiation, proliferation,
+            and migration of progenitor cells, and additionally influence capillary formation, inflammation, and endothelial
+            cell apoptosis.
+            </p>
+            
+        </div>
+    </div>
+</section>
+
+<!-- body section ends -->
+ 
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src="mara/script.js"></script>
+
+</body>
+</html>

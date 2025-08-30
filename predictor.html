@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARA Predictor</title>
+
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="predictor/predictor.css">
+    <!-- PyScript resource -->
+    <!-- This script tag bootstraps PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <!-- for splashscreen -->
+    <style>
+        #loading { outline: none; border: none; background: transparent }
+    </style>
+    <script type="module">
+        const loading = document.getElementById('loading');
+        addEventListener('py:ready', () => loading.close());
+        loading.showModal();
+    </script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pathways.html">Pathways</a></li>
+            <li><a href="#predictor">Predictor</a></li>
+            <li><a href="genes.html">Genes</a></li>
+            <li><a href="future.html">Future</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+    <div class="search-form">
+        <input type="search" id="search-btn" placeholder="Type a gene symbol...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+</header>
+
+<!-- header section ends-->
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- intro section starts -->
+<section class="guidance" id="guidance">
+
+    <h1 class="heading">guidance</h1>
+        
+    <div class="intro">
+        <p>MARA is a python-based tool, using a hybrid model consisting of genetic 
+            programming (GP) algorithm and a deep learning method neural network (NN). 
+            See below to learn more about the GPNN model.
+        </p>
+        <p>To use the model, please download the model and data(optional, for you can use your own data) zip, and then follow the README
+        file touse the model easily.
+        </p>
+        <p><span>NOTE:</span> the unit of data is TPM (Transcript per Kilobase per Million mapped reads, a 
+            commonly used unit of gene expression levels). If you are using your own data, the csv file should obtain three columns:
+            ID, Age, Expression Level.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- intro section ends -->
+
+<!-- model section starts -->
+<section class="model" id="model">
+
+    <h1 class="heading">predictor download</h1>
+
+    <div class="container">
+        
+        <div class="controls">
+            
+            <div class="filter-options">
+                <select id="sortOptions">
+                    <option value="name">File by name</option>
+                    <option value="date">File by date</option>
+                    <option value="size">File by size</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="files-grid" id="filesContainer">
+        </div>
+    </div>
+</section>
+
+<!-- model section ends -->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+  
+
+<script src="predictor/predictor.js"></script>
+
+</body>
+</html>

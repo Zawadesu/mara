@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genes</title>
+
+    <!-- awesome font link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="genes/genes.css">
+
+    <style>
+        #loading { outline: none; border: none; background: transparent }
+    </style>
+    <script type="module">
+        const loading = document.getElementById('loading');
+        addEventListener('py:ready', () => loading.close());
+        loading.showModal();
+    </script>
+
+</head>
+<body>
+
+<!-- header section starts-->
+<header class="header">
+
+    <a href="#" class="logo">
+        <img src="images/logo.png" alt="">
+    </a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pathways.html">Pathways</a></li>
+            <li><a href="predictor.html">Predictor</a></li>
+            <li><a href="genes.html">Genes</a></li>
+            <li><a href="future.html">Future</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>   
+    </nav>
+
+    <div class="icons">
+        <div class="fas fa-globe" id="globe-btn"></div>
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </div>
+
+</header>
+
+<!-- header section ends-->
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+
+<!-- table section starts-->
+
+<!-- COX -->
+<div class="grid-container">
+<table class="tb">
+<thead>
+    <tr>
+        <th>COX PATHWAY</th>
+    </tr>
+</thead>
+<tbody>
+    
+    <tr>
+        <td><a href="gene_info/ptgs1/ptgs1.html" class="gene-link">PTGS1</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cbr1/cbr1.html" class="gene-link">CBR1</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ptgds/ptgds.html" class="gene-link">PTGDS</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/akr1c3/akr1c3.html" class="gene-link">AKR1C3</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ptges2/ptges2.html" class="gene-link">PTGES2</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ptges3/ptges3.html" class="gene-link">PTGES3</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ptgis/ptgis.html" class="gene-link">PTGIS</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/prxl2b/prxl2b.html" class="gene-link">PRXL2B</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/tbaxs1/tbaxs1.html" class="gene-link">TBAXS1</a></td>
+    </tr>
+</tbody>
+</table>
+
+<!-- LOX -->
+<table class = "tb">
+
+<thead>
+    <tr>
+        <th>LOX PATHWAY</th>
+    </tr>
+</thead>
+<tbody>
+    
+    <tr>
+        <td><a href="gene_info/alox5/alox5.html" class="gene-link">ALOX5</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ltc4s1/ltc4s1.html" class="gene-link">LTC4S1</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/lta4h/lta4h.html" class="gene-link">LTA4H</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ggt1/ggt1.html" class="gene-link">GGT1</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ggt5/ggt5.html" class="gene-link">GGT5</a></td>
+    </tr>
+
+</tbody>    
+</table>
+
+<!-- CYP -->
+<table class="tb">
+<thead>
+    <tr>
+        <th>CYP450 PATHWAY</th>
+    </tr>
+</thead>
+<tbody>
+    
+    <tr>
+        <td><a href="gene_info/cyp4f2/cyp4f2.html" class="gene-link">CYP4F2</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp4f3/cyp4f3.html" class="gene-link">CYP4F3</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp2u1/cyp2u1.html" class="gene-link">CYP2U1</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp2c19/cyp2c19.html" class="gene-link">CYP2C19</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp2e1/cyp2e1.html" class="gene-link">CYP2E1</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp2j2/cyp2j2.html" class="gene-link">CYP2J2</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/ephx2/ephx2.html" class="gene-link">EPHX2</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp2c8/cyp2c8.html" class="gene-link">CYP2C8</a></td>
+    </tr>
+    <tr>
+        <td><a href="gene_info/cyp2c9/cyp2c9.html" class="gene-link">CYP2C9</a></td>
+    </tr>
+    
+</tbody>
+</table>
+</div>
+<!-- table section ends-->
+
+<!-- footer section starts -->
+
+<section class="footer">
+    
+    <div class="ack">
+        <h3>acknowledgement</h3>
+        <p>Sincere gratitude to Professor Xiu-jie Wang for her tutelage.</p>
+    </div>
+
+    <div class="credit">Created by <span>Oren</span> | All Rights Reserved</div>
+</section>
+<!-- footer section ends -->
+
+<script src="../../index/script.js"></script>
+
+</body>
+</html>
