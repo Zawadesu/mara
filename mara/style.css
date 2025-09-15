@@ -376,7 +376,10 @@ section{
    }
 
    .home .content p{
-        font-size: 1.5rem;
+       font-size: 1.5rem;
+   }
+   .about .row .image {
+       display: none;
    }
 }
 
