@@ -118,136 +118,85 @@ section{
 }
 
 /* intro */
-.intro{
-    margin-top: 11.5rem;
-    margin-left: 8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    background: #2d97f4;
-    flex-wrap: wrap;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+.intro, .plot {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.intro a {
-    color: #fff; 
-    text-decoration: none; 
-  }
-
-  .intro a:link,
-  .intro a:visited {
-    color: var(--main-color); 
-  }
-
-  .intro a:hover {
-    color: #b5ead7; /* 鼠标悬停时的颜色 */
-  }
-
-  .intro a:active {
-    color: #b5ead7; /* 链接被点击时的颜色 */
-  }
-
-.intro .gene-table {
-    width: 100%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    font-size: 14px;
-}
-
-.gene-table th {
-    background-color: #f8f9fa;
-    color: var(--main-color);
-    font-size: 16px;
-    width: 1200px;
-
-}
-
-.gene-table td:first-child {
-    width: 20%; 
-}
-
-.gene-table td:nth-child(2) {
-    width: 40%; 
-}
-
-.gene-table td:nth-child(3) {
-    width: 40%; 
-}
-
-.gene-table td{
-    text-align: justify;
-}
-
-.gene-table td.image-cell {
-    height: 50px;
+.heading {
     text-align: center;
-}
-.image-cell img {
-    max-width: 70%;
-    height: auto;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    color: var(--main-color);
+    font-size: 2.5rem;
 }
 
-.intro .content{
-    flex: 1 1 45rem;
-    padding: 2rem;
-}
 
-.intro .content p{
-    font-size: 1.8rem;
-    color: #fff;
-    padding: 1rem 0;
-    line-height: 1.8;
-    text-align: justify;
-    text-justify: inter-word; 
-}
-
-/* table */
-
-/* 基础表格样式 */
 .gene-table {
-    width: 80%;
-    margin: 20px auto;
+    width: 100%;
     border-collapse: collapse;
-}
-
-.gene-table th, .gene-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+    table-layout: fixed;
 }
 
 .gene-table th {
-    background-color: #f8f9fa;
+    background-color: #3498db;
+    color: white;
+    padding: 1.2rem;
+    text-align: left;
+    font-size: 2rem;
 }
 
-.plot {
-    margin-top: 6rem;
-    margin-left: 8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    flex-wrap: wrap;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    background: #fff;
-}
-
-.plot .note{
-    font-size: 1.8rem;
-    color: #000;
-    padding: 0.5rem 0;
-    line-height: 1.8;
+.gene-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f1f1;
+    word-wrap: break-word;
+    font-size: 1.6rem;
     text-align: justify;
-    text-justify: inter-word; 
+}
+
+.gene-table tr:last-child td {
+    border-bottom: none;
+}
+
+.image-cell {
+    text-align: center;
+    width: 30%;
+}
+
+.image-cell img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.image-cell img:hover {
+    transform: scale(1.05);
+}
+
+
+#boxplot-container {
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    padding: 15px;
+}
+
+.note {
+    text-align: center;
+    margin-top: 1rem;
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 1.2rem;
 }
 
 .footer .ack h3{
@@ -294,70 +243,76 @@ section{
   }
 
 /* media queries */
-@media (max-width:991px){
-    html{
-        font-size: 55%;
+@media (max-width: 992px) {
+    .heading {
+        font-size: 2rem;
     }
-
-    .header{
-        padding: 1.5rem 2rem;
-    }
-
-    section{
-        padding: 2rem;
+    
+    #boxplot-container {
+        height: 450px;
     }
 }
 
-@media (max-width:768px){
-   #menu-btn{
-        display: inline-block;
-   }
-   .header ul{
-        flex-direction: column;
-   }
-
-   .header .navbar{
-        position: absolute;
-        top: 100%; right: -100%;
-        background: #b5ead7;
-        width: 30rem;
-        height: calc(100vh - 9.5rem);
-   }
-
-   .header .navbar.active{
-        right:0;
-   }
-
-   .header .navbar a{
-        color: #fff;
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none;
+    }
+    
+    .intro, .plot {
+        padding: 1.5rem;
+    }
+    
+    .gene-table {
         display: block;
-        margin: 1.5rem;
-        padding: 3rem;
-        font-size: 2rem ;
-   }
-
-   .header .search-form{
-    width: 50%;
-    right: 2rem;
-   }
-
-   .home{
-        background-position: left;
-        justify-content: center;
-        text-align: center;
-   }
-
-   .home .content h3{
-        font-size: 4.5rem;
-   }
-
-   .home .content p{
-        font-size: 1.5rem;
-   }
+        overflow-x: auto;
+    }
+    
+    .image-cell {
+        width: 40%;
+    }
+    
+    #boxplot-container {
+        height: 400px;
+        padding: 10px;
+    }
+    
+    .heading {
+        font-size: 1.8rem;
+    }
 }
 
-@media (max-width:450px){
-    html{
-        font-size: 50%;
+@media (max-width: 576px) {
+    .header {
+        padding: 1rem;
+    }
+    
+    .logo img {
+        height: 35px;
+    }
+    
+    .intro, .plot {
+        padding: 1rem;
+    }
+    
+    .gene-table th {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .gene-table td {
+        padding: 0.8rem;
+    }
+    
+    .image-cell {
+        width: 100%;
+        display: block;
+    }
+
+    #boxplot-container {
+        height: 350px;
+    }
+    
+    .heading {
+        font-size: 1.5rem;
     }
 }
